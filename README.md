@@ -13,3 +13,4 @@
 
 #### 文档
 https://www.ownthink.com/docs/bot/
+https://wechaty.js.org/v/zh/api/message
