@@ -1,0 +1,29 @@
+{
+  "name": "robot-wechaty",
+  "version": "1.0.0",
+  "description": "[![Powered by Wechaty](https://img.shields.io/badge/Powered%20By-Wechaty-green.svg)](https://github.com/chatie/wechaty) [![Wechaty开源激励计划](https://img.shields.io/badge/Wechaty-开源激励计划-green.svg)](https://github.com/juzibot/Welcome/wiki/Everything-about-Wechaty)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nzjcnjzx/robot-wechaty.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nzjcnjzx/robot-wechaty/issues"
+  },
+  "homepage": "https://github.com/nzjcnjzx/robot-wechaty#readme",
+  "dependencies": {
+    "axios": "^0.21.0",
+    "crawler": "^1.2.2",
+    "moment": "^2.29.1",
+    "node-schedule": "^1.3.2",
+    "qrcode-terminal": "^0.12.0",
+    "to-markdown": "^3.1.1",
+    "wechaty": "^0.50.5"
+  }
+}
