@@ -10,3 +10,6 @@
 ![Image text](https://www.sxbbt.net/screenshot/wechat1.jpg)
 ![Image text](https://www.sxbbt.net/screenshot/wechat2.jpg)
 ![Image text](https://www.sxbbt.net/screenshot/wechat3.jpg)
+
+#### 文档
+https://www.ownthink.com/docs/bot/
