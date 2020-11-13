@@ -2,7 +2,7 @@
  * @Author: Darren 
  * @Date: 2020-11-12 16:12:59 
  * @Last Modified by: Darren Zhang
- * @Last Modified time: 2020-11-13 12:28:30
+ * @Last Modified time: 2020-11-13 16:00:14
  */
 const { Wechaty } = require("wechaty");
 
@@ -52,7 +52,7 @@ bot
 bot
     .start()
     .then(async () => {
-        console.log("开始登录微信")
+       console.log("开始登录微信")
     })
     .catch((err) => console.error(err));
 
