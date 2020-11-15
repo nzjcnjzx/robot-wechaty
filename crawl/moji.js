@@ -1,3 +1,9 @@
+/*
+ * @Author: Darren Zhang 
+ * @Date: 2020-11-14 10:47:18 
+ * @Last Modified by:   Darren Zhang 
+ * @Last Modified time: 2020-11-14 10:47:18 
+ */
 /**
  * 获取墨迹天气信息
  * https://tianqi.moji.com/
@@ -29,7 +35,7 @@ async function weather (cb) {
         const wind = $lis.eq(3).text().mytrim()
         const level = $lis.eq(4).text().mytrim()
         const todayWeather = `${day}${weather}${range}${wind}${level}`
-        text = `当前${addr}\n空气${air} 气温为${curWeather}度 ${curWet} ${curWin}\n${todayWeather}\n${tips}`
+        text = `当前${addr}\n空气${air} 气温 ${curWeather}度 ${curWet} ${curWin}\n${todayWeather}\n${tips}`
         done();
       }
     }

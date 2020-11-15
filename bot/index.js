@@ -2,11 +2,10 @@
  * @Author: Darren 
  * @Date: 2020-11-12 16:12:59 
  * @Last Modified by: Darren Zhang
- * @Last Modified time: 2020-11-13 16:00:14
+ * @Last Modified time: 2020-11-14 10:40:18
  */
 const { Wechaty } = require("wechaty");
 
-const { ScanStatus } = require('wechaty-puppet')
 const QrcodeTerminal = require("qrcode-terminal");
 const onRoomJoin = require("./onRoomJoin") // 加入房间监听回调
 const onMessage = require("./onMessage") // 消息监听回调
