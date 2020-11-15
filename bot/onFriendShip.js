@@ -2,7 +2,7 @@
  * @Author: Darren 
  * @Date: 2020-11-12 16:13:08 
  * @Last Modified by: Darren Zhang
- * @Last Modified time: 2020-11-14 10:40:23
+ * @Last Modified time: 2020-11-15 09:00:11
  */
 
 const { Friendship } = require("wechaty");
