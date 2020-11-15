@@ -2,20 +2,25 @@
  * @Author: Darren 
  * @Date: 2020-11-12 16:13:13 
  * @Last Modified by: Darren Zhang
- * @Last Modified time: 2020-11-15 12:22:18
+ * @Last Modified time: 2020-11-16 00:03:39
  */
 const crawl = require('../crawl')
 const { FileBox, UrlLink, MiniProgram } = require("wechaty");
 const { requestRobot, now } = require('../utils')
 const config = require('../config')
+const { getQingyunkeMsg, getOnePoetry, getOnePoetrySong } = require('../sourceApi')
 const actions = new Map([
     [['0', '菜单'], getMenu],
-    [['1', '天气'], getWether],
+    [['1', '武汉天气'], getWether],
     [['2', '图片'], getImage],
     [['3', '音乐'], getMusic],
     [['4', '电影'], getMovie],
     [['5', '小程序'], getMiniPrograme],
     [['6', '名片'], getCard],
+    [['7', '笑话'], getJoke],
+    [['8', '每日一句'], crawl.getOne],
+    [['9', '诗'], getOnePoetry],
+    [['10', '诗歌'], getOnePoetrySong],
 ])
 
 async function robotReply (msg, bot) {
@@ -36,8 +41,8 @@ async function getMenu () {
         } else {
             pre = pre + cur.join('、')
         }
-        if(index % 2 != 0) {
-            pre = pre + '\n'  
+        if (index % 2 != 0) {
+            pre = pre + '\n'
         } else {
             pre = pre + '\t'
         }
@@ -55,7 +60,7 @@ async function getWether () {
 }
 
 async function getImage () {
-    const fileBox = FileBox.fromUrl('https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3105295728,2665623167&fm=26&gp=0.jpg')
+    const fileBox = FileBox.fromUrl(await crawl.getOneImage())
     return fileBox
 }
 async function getMusic () {
@@ -88,7 +93,8 @@ async function getMiniPrograme () {
     })
     return miniPrograme
 }
-async function getCard (contactCard) {
+async function getCard (bot) {
+    const contactCard = await bot.Contact.find({ id: config.cardId })
     return contactCard
 }
 /**
@@ -97,15 +103,18 @@ async function getCard (contactCard) {
  * 对自己除了特定消息，其他消息不回复
  * @param {*} content 
  */
-async function getMsgByContent (content, contactCard) {
+async function getMsgByContent (content, bot) {
     let message = null
     const action = Array.from(actions).filter(([key, value]) => key.includes(content))
     for (const [, value] of action) {
-        message = await value(contactCard)
+        message = await value(bot)
     }
     return message
 }
 
+async function getJoke () {
+    return getQingyunkeMsg('笑话')
+}
 
 module.exports = bot => {
     return async function onMessage (msg) {
@@ -114,14 +123,12 @@ module.exports = bot => {
         const to = msg.to()
         const room = msg.room()
         const isAtMe = await msg.mentionSelf()
-        const contactCard = await bot.Contact.find({ id: config.cardId })
         const hasIn = [...actions.keys()].reduce((pre, cur) => pre.concat(...cur), []).includes(content)
         if (msg.self() && !hasIn) return;
-        let sendMsg = await getMsgByContent(content, contactCard)
+        let sendMsg = await getMsgByContent(content, bot)
         console.log('%s 来自%s的消息,发送给%s, \n内容是: %s 我回复的内容%s', now(), from.name(), to && to.name() || room.id, content, sendMsg)
-        if(isAtMe) {
-            sendMsg = '你@我了?'
-            return await room.say(sendMsg, from)
+        if (isAtMe && config.myRoom.includes(room.owner().id)) {
+            return await room.say(sendMsg || '^_^', from)
         }
         sendMsg && await msg.say(sendMsg)
     }

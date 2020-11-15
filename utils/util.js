@@ -1,16 +1,16 @@
-String.prototype.mytrim = function() {
+String.prototype.mytrim = function () {
   return this.replace(/[\s+\n+\r+]/g, '')
 }
-
+function random (min, max) {
+  return Math.floor(Math.random() * (max - min + 1)) + min
+}
 module.exports = {
-  trim(str) {
+  random,
+  trim (str) {
     return str.replace(/[\s+\n+\r+]/g, '')
   },
-  random(min, max) {
-    return Math.floor(Math.random() * (max - min + 1)) + min
-  },
-  choice(arr = []) {
-    const len = arr.len
-    return arr[this.random(0, len - 1)]
+  choice (arr = []) {
+    const len = arr.length
+    return arr[random(0, len - 1)]
   }
 }
