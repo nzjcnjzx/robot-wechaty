@@ -6,36 +6,41 @@
  */
 
 const config = require('../config')
-const { setSchedule } = require('../utils')
+const { setSchedule, now } = require('../utils')
 const { getOne, getOneImage, weather } = require('../crawl')
 const { getQingyunkeMsg, getOnePoetrySong, getOnePoetry } = require('../sourceApi')
 
 async function startSchedule(bot) {
     const me = await bot.Contact.find({ id: config.cardId })
     console.log('开启定时任务！', me.name())
-    setSchedule('0 0 7 * *', async () => {
+    setSchedule('0 0 7 * * *', async () => {
         await me.say('早上好！该起床了')
     })
-    setSchedule('0 30 7 * *', () => {
+    setSchedule('0 30 7 * * *', () => {
         weather(async weatherMessage => {
             await me.say(weatherMessage)
+            console.log(now, '发送消息了')
         })
     })
-    setSchedule('0 0 9 * *', async () => {
+    setSchedule('0 0 9 * * *', async () => {
         await me.say(await getOne())
         await me.say(await getOneImage())
+        console.log(now, '发送消息了')
     })
-    setSchedule('0 40 11 * *', async () => {
+    setSchedule('0 40 11 * * *', async () => {
         await me.say('中午好！ 该去吃午饭了')
         await me.say(await getQingyunkeMsg('笑话'))
+        console.log(now, '发送消息了')
     })
-    setSchedule('0 0 18 * *', async () => {
+    setSchedule('0 0 18 * * *', async () => {
         await me.say('下班了！')
         await me.say(await getOnePoetrySong())
+        console.log(now, '发送消息了')
     })
-    setSchedule('0 0 23 * *', async () => {
+    setSchedule('0 0 23 * * *', async () => {
         await me.say('睡觉了!')
         await me.say(await getOnePoetry())
+        console.log(now, '发送消息了')
     })
 }
 
