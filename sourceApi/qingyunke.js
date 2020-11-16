@@ -30,9 +30,6 @@ async function getQingyunkeMsg (msg) {
   }
 
 }
-// getQingyunkeMsg('笑话').then(data => {
-//   console.log(data)
-// })
 
 module.exports = {
   getQingyunkeMsg

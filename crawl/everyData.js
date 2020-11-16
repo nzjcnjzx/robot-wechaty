@@ -40,9 +40,7 @@ function getOneImage () {
     })
   });
 }
-// getOneImage().then(res => {
-//   console.log(res);
-// })
+
 module.exports = {
   getOne,
   getOneImage

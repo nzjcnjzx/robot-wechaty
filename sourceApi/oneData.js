@@ -22,10 +22,6 @@ async function getOnePoetrySong () {
   return poetry;
 }
 
-// getOnePoetry().then(res => {
-//   console.log(res)
-// })
-
 module.exports = {
   getOnePoetry,
   getOnePoetrySong

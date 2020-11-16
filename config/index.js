@@ -14,6 +14,6 @@ module.exports = {
     enable: true,
     // 群主的ID， 只处理我是群主的群
     myRoom: ['wxid_7uzl4dyeo3vf12', 'wxid_9jznononkp7c21'],
-    cardId: 'wxid_9jznononkp7c21',
+    cardId: 'wxid_7uzl4dyeo3vf12',
     qingyunkeApi: 'http://api.qingyunke.com/api.php?key=free&appid=0&msg='
 }
