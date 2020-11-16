@@ -2,7 +2,7 @@
  * @Author: Darren 
  * @Date: 2020-11-12 16:12:59 
  * @Last Modified by: Darren Zhang
- * @Last Modified time: 2020-11-14 10:40:18
+ * @Last Modified time: 2020-11-16 10:33:09
  */
 const { Wechaty } = require("wechaty");
 
@@ -11,6 +11,7 @@ const onRoomJoin = require("./onRoomJoin") // 加入房间监听回调
 const onMessage = require("./onMessage") // 消息监听回调
 const onFriendShip = require("./onFriendShip") // 好友添加监听
 const config = require("../config")
+const { startSchedule } = require('../schedule')
 //  二维码生成
 const onScan = (qrcode, code) => {
     if (code === 2) {
@@ -51,7 +52,8 @@ bot
 bot
     .start()
     .then(async () => {
-       console.log("开始登录微信")
+        console.log("开始登录微信")
+        startSchedule(bot)
     })
     .catch((err) => console.error(err));
 

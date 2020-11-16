@@ -12,6 +12,7 @@ const { getQingyunkeMsg, getOnePoetrySong, getOnePoetry } = require('../sourceAp
 
 async function startSchedule(bot) {
     const me = await bot.Contact.find({ id: config.cardId })
+    console.log('开启定时任务！', me.name())
     setSchedule('0 0 7 * *', async () => {
         await me.say('早上好！该起床了')
     })
